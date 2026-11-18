@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: seniordev_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U app -d seniordev_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install psql client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Verify pgvector is available
+        env:
+          PGPASSWORD: ci_password
+        run: |
+          psql -h localhost -U app -d seniordev_test \
+            -c "CREATE EXTENSION IF NOT EXISTS vector;" \
+            -c "SELECT extversion FROM pg_extension WHERE extname='vector';"
+
+      # TODO: replace once the stack is in place
+      - name: Lint
+        run: echo "add linter here"
+
+      - name: Test
+        run: echo "add tests here"
