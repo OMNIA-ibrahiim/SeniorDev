@@ -1,0 +1,12 @@
+# Fill in real GitHub usernames, then remove the leading # on each line.
+# Owners are asked for review automatically when files in their folder change.
+#
+# *                      @leader-username
+# /modules/indexing/     @user1 @user2
+# /modules/performance/  @user1 @user2
+# /modules/security/     @user3 @user4
+# /modules/rag/          @user5 @user6
+# /modules/sandbox/      @user5 @user6
+# /modules/dashboard/    @TBD
+# /docs/contracts/       @leader-username
+# /infra/                @leader-username

@@ -26,3 +26,20 @@ target/
 # Logs / data
 *.log
 pgdata/
+
+# SeniorDev ML and data
+/data/*
+!/data/README.md
+weights/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+.ipynb_checkpoints/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
